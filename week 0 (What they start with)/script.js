@@ -8,6 +8,27 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 
 document.body.appendChild(renderer.domElement)
 
+
+
+
+document.body.onkeydown = function(evt){
+    
+    if(evt.keyCode==38){
+        var direction = new THREE.Vector3();
+        camera.getWorldDirection(direction)
+        camera.position.add(direction)
+    }
+    document.body.onkeydown``= function(evt) {
+        camera.rotation.y-=evt.movementX/65;
+    };
+
+        if(evt.keyCode==40){
+            var direction = new THREE.Vector3();
+            camera.getWorldDirection(direction)
+            camera.position.sub(direction)
+
+            }
+}
 var geometry = new THREE.BoxGeometry(1, 1, 1)
 var material = new THREE.MeshLambertMaterial({color: "green"})
 var cube1 = new THREE.Mesh(geometry, material)
@@ -21,4 +42,8 @@ var material = new THREE.MeshLambertMaterial({color: "yellow"})
 var sun = new THREE.Mesh(geometry, material)
 sun.position.set(0, 2, 0);
 scene.add(sun)
+var render = function(){
+requestAnimationFrame(render)
 renderer.render(scene, camera)
+}
+render()
