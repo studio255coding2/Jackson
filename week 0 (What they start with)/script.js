@@ -11,6 +11,19 @@ document.body.appendChild(renderer.domElement)
 
 
 
+document.body.requestPointerLock = document.body.requestPointerLock ||
+                                    document.body.mozRequestPointerLock;
+        document.exitPointerLock = document.exitPointerLock ||
+                                   document.mozExitPointerLock;
+        document.body.onclick = function() {
+          document.body.requestPointerLock();
+        };
+        
+
+
+document.body.onmousemove = function(evt) {
+    camera.rotation.y-=evt.movementX/65;
+  };
 document.body.onkeydown = function(evt){
     
     if(evt.keyCode==38){
@@ -18,10 +31,6 @@ document.body.onkeydown = function(evt){
         camera.getWorldDirection(direction)
         camera.position.add(direction)
     }
-    document.body.onkeydown``= function(evt) {
-        camera.rotation.y-=evt.movementX/65;
-    };
-
         if(evt.keyCode==40){
             var direction = new THREE.Vector3();
             camera.getWorldDirection(direction)
@@ -29,6 +38,7 @@ document.body.onkeydown = function(evt){
 
             }
 }
+
 var geometry = new THREE.BoxGeometry(1, 1, 1)
 var material = new THREE.MeshLambertMaterial({color: "green"})
 var cube1 = new THREE.Mesh(geometry, material)
