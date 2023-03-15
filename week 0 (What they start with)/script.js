@@ -22,7 +22,7 @@ document.body.requestPointerLock = document.body.requestPointerLock ||
 
 
 document.body.onmousemove = function(evt) {
-    camera.rotation.y-=evt.movementX/65;
+    camera.rotation.y-=evt.movementX/100;
   };
 document.body.onkeydown = function(evt){
     
@@ -44,23 +44,47 @@ document.body.onkeydown = function(evt){
               this.camera.position.y++;
             }
 }
-
 var geometry = new THREE.BoxGeometry(1, 1, 1)
 var material = new THREE.MeshLambertMaterial({color: "green"})
 var cube1 = new THREE.Mesh(geometry, material)
-scene.add(cube2)
-var cube2 = new THREE.Mesh(geometry, material)
+scene.add(cube1)
 
+
+
+var geometry = new THREE.BoxGeometry(1, 1, 1)
+var material = new THREE.MeshLambertMaterial({color: "green"})
+var player = new THREE.Mesh(geometry, material)
+scene.add(player)
+
+var geometry = new THREE.BoxGeometry(1, 1, 1)
+var material = new THREE.MeshLambertMaterial({color: "green"})
+var cube2 = new THREE.Mesh(geometry, material)
 scene.add(cube2)
+
+
+
+
 var light = new THREE.PointLight(new THREE.Color('white'), 1, 500)
 light.position.set(0, 1.5, 1)
 scene.add(light)
 cube1.rotation.y = 45; 
-var geometry = new THREE.BoxGeometry(30, 1, 30); 
-var material = new THREE.MeshLambertMaterial({color: 0xFFCC00}); 
+
+var geometry = new THREE.BoxGeometry(30, 1, 30);
+var material = new THREE.MeshLambertMaterial({color: "green" });
 var ground = new THREE.Mesh(geometry, material);
-ground.position.y = -1
-scene.add(ground);
+scene.add(ground)
+
+var geometry = new THREE.BoxGeometry(30, 1, 31);
+var material = new THREE.MeshLambertMaterial({color: "green" });
+var ground2 = new THREE.Mesh(geometry, material);
+ground2.position.z = -40;
+scene.add(ground2)
+
+var geometry = new THREE.BoxGeometry(5, 1, 10);
+var material = new THREE.MeshLambertMaterial({color: "green" });
+var bridge = new THREE.Mesh(geometry, material);
+bridge.position.z = -20;
+scene.add(bridge)
 
 var geometry = new THREE.BoxGeometry(0.5, 7, 0.5); 
 var material = new THREE.MeshLambertMaterial({color: "brown"}); 
@@ -89,7 +113,7 @@ var nbmOfHills = 3;
 for(var i=0; i<nbmOfHills; i++){
   for(var j=-2; j<4; j+=0.1){
     var geometry = new THREE.BoxGeometry(30, 1, 1); 
-    var material = new THREE.MeshLambertMaterial({color: 0xFFCC00}); 
+    var material = new THREE.MeshLambertMaterial({color: "green"}); 
     var hill = new THREE.Mesh(geometry, material);
     hill.position.set(0, Math.sin(j), ((i*10)+j)-10)
     scene.add(hill);
